@@ -1,3 +1,5 @@
+import { BreedPageUI } from "./_components/breed-page-ui";
+
 interface BreedPageProps {
   params: {
     animal: string;
@@ -9,8 +11,7 @@ const BreedPage = ({ params }: BreedPageProps) => {
 
   return (
     <>
-      <h1>{animal}</h1>
-      <h2>{breed}</h2>
+      <BreedPageUI headline={`${animal} - ${breed}`} />
     </>
   );
 };
