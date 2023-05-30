@@ -49,20 +49,24 @@ export const GET_BREED_PAGE = gql`
   query getBreedPage($slug: String!) {
     pageBreedCollection(where: { slug: $slug }, limit: 1) {
       items {
-        sys {
-          id
-        }
-        slug
-        seo {
-          ...SeoInfo
-        }
-        breed {
-          ...BreedDogInfo
-        }
+        ...PageBreedInfo
       }
     }
   }
+  fragment PageBreedInfo on PageBreed {
+    sys {
+      id
+    }
+    slug
+    seo {
+      ...SeoInfo
+    }
+    breed {
+      ...BreedDogInfo
+    }
+  }
   fragment BreedDogInfo on BreedDog {
+    __typename
     name
     bio {
       json

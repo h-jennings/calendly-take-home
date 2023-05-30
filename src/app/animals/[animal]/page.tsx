@@ -20,6 +20,7 @@ export const generateMetadata = async ({
   const data = await getPageData(params.animal);
   const page = data.pageAnimalCollection?.items[0];
   const { seo } = page ?? {};
+
   return {
     title: seo?.title,
     description: seo?.description,
