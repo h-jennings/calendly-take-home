@@ -5,16 +5,27 @@ export const GET_ANIMAL_PAGE = gql`
   query getAnimalPage($slug: String!) {
     pageAnimalCollection(where: { slug: $slug }, limit: 1) {
       items {
-        name
-        slug
-        seo {
-          ...SeoInfo
-        }
-        breedCollection {
-          sys {
-            id
-          }
-        }
+        ...PageAnimalInfo
+      }
+    }
+  }
+
+  fragment PageAnimalInfo on PageAnimal {
+    name
+    slug
+    seo {
+      ...SeoInfo
+    }
+    content {
+      json
+    }
+    image {
+      url
+      description
+    }
+    breedCollection {
+      sys {
+        id
       }
     }
   }

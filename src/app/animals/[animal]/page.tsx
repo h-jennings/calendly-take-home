@@ -1,8 +1,17 @@
+import { Headline } from "@/app/_components/headline";
+import { NextContentfulImage } from "@/app/_components/next-contentful-image";
+import { ContentfulRichText } from "@/app/_components/rich-text";
+import { StackY } from "@/app/_components/stack";
 import { sdk } from "@/graphql/api";
 import { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { cache } from "react";
+import { BreedList } from "./_components/breed-list";
+import {
+  ContentWrapper,
+  ImageContainer,
+  RichTextContainer,
+} from "./page.styles";
 
 interface AnimalPageParams {
   params: {
@@ -17,56 +26,40 @@ const AnimalPage = async ({ params }: AnimalPageParams) => {
     notFound();
   }
 
-  const { name, breedCollection } = page;
+  const { breedCollection, name, content, image } = page;
   const breedCollectionId = breedCollection?.sys.id;
 
   return (
-    <div>
-      <h1>{name}</h1>
-      {breedCollectionId != null && (
-        // @ts-expect-error - Async component
-        <BreedList
-          animalId={params.animal}
-          breedCollectionId={breedCollectionId}
-        />
-      )}
-    </div>
+    <ContentWrapper gap={7}>
+      <StackY gap={5}>
+        <Headline align="center" as="h1" level={1}>
+          {name}
+        </Headline>
+        <ImageContainer>
+          {image?.url != null && (
+            <NextContentfulImage
+              src={image?.url}
+              alt={image?.description ?? ""}
+              fill
+              style={{
+                objectFit: "cover",
+                objectPosition: "center",
+              }}
+            />
+          )}
+        </ImageContainer>
+        <RichTextContainer>
+          <ContentfulRichText json={content?.json} />
+        </RichTextContainer>
+      </StackY>
+      {/* @ts-expect-error - Async Server Component */}
+      <BreedList
+        breedCollectionId={breedCollectionId}
+        animalId={params.animal}
+      />
+    </ContentWrapper>
   );
 };
-
-const getBreedCollection = cache(async (id: string) => {
-  return await sdk().getBreedCollection({ id });
-});
-
-const BreedList = async ({
-  breedCollectionId,
-  animalId,
-}: {
-  breedCollectionId: string;
-  animalId: string;
-}) => {
-  const data = await getBreedCollection(breedCollectionId);
-  const breeds = data.breedCollection?.breedsCollection?.items ?? [];
-
-  return (
-    <div>
-      <h2>Breeds</h2>
-      <ul>
-        {breeds.map((b) => {
-          const { breed } = b ?? {};
-          return (
-            <li key={b?.sys.id}>
-              <Link href={`/animals/${animalId}/${b?.slug}`}>
-                {breed?.name}
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-  );
-};
-
 const getPageData = cache(async (animal: string) => {
   return await sdk().getAnimalPage({ slug: animal });
 });

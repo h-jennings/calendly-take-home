@@ -1,9 +1,11 @@
+"use client";
 import styled from "styled-components";
-import { FontSize, FontWeight, Leading } from "../_styles/theme";
+import { Leading } from "../_styles/theme";
 
 type HeadlineProps = {
   level?: 1 | 2 | 3;
   color?: "textPrimary" | "textSecondary" | "textAccent";
+  align?: "left" | "center";
   leading?: Leading;
 };
 
@@ -33,6 +35,7 @@ export const Headline = styled.h2<HeadlineProps>`
       }
     }
   }};
+  text-align: ${({ align }) => align ?? "left"};
   color: ${({ color }) => `var(--colors-${color ?? "textPrimary"})`};
   line-height: ${({ leading }) =>
     leading != null && `var(--leading-${leading})`};

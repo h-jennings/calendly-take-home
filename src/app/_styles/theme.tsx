@@ -24,7 +24,7 @@ const GlobalStyle = createGlobalStyle`
   --space-9: 192px;
   --sizes-full: 100%;
   --sizes-prose: 65ch;
-  --sizes-desktop: 1440px;
+  --sizes-desktop: 1024px;
   --sizes-screenW: 100vw;
   --sizes-screenH: 100vh;
   --radii-pill: 9999px;

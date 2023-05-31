@@ -1,6 +1,8 @@
 "use client";
 
+import { Flex } from "@/app/_components/flex";
 import { StackX } from "@/app/_components/stack";
+import { Text } from "@/app/_components/text";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import styled from "styled-components";
@@ -25,8 +27,10 @@ export const RootAnimalsLayout = ({ children }: RootAnimalsLayoutProps) => {
       </Main>
       <Footer style={{ gridArea: "footer", zIndex: 0 }}>
         <InnerContainer>
-          <div>footer</div>
-          <div>footer</div>
+          <Flex justify="space-between">
+            <Text>AnimalWorld &trade;</Text>
+            <Text>&copy; {new Date().getFullYear()}</Text>
+          </Flex>
         </InnerContainer>
       </Footer>
     </Wrapper>
@@ -77,7 +81,7 @@ const InnerContainer = styled.div`
 
 const Footer = styled.footer`
   background-color: var(--colors-surfaceSecondary);
-  padding: var(--space-2);
+  padding: var(--space-4);
 `;
 
 const Nav = styled.nav`
@@ -95,6 +99,7 @@ const Nav = styled.nav`
 const NavInner = styled.div`
   height: var(--sizes-full);
   width: var(--sizes-full);
+  margin: 0 auto;
   max-width: var(--sizes-desktop);
   display: flex;
   align-items: center;
@@ -122,7 +127,7 @@ const StyledNavLink = styled(Link)<{ active?: string }>`
 
 const Main = styled.main`
   width: var(--sizes-full);
-  padding-top: calc(var(--nav-height) + var(--space-4));
+  padding-top: calc(var(--nav-height) + var(--space-5));
   padding-left: var(--space-4);
   padding-right: var(--space-4);
 `;
