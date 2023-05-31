@@ -12,5 +12,5 @@ export const DogBreedPageUI = ({ data }: DogBreedPageUIProps) => {
 const Headline = styled.h1`
   font-size: 2rem;
   font-weight: 700;
-  color: ${(props) => props.theme.colors.primary};
+  color: var(--colors-textAccent);
 `;
