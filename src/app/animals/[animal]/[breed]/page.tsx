@@ -1,8 +1,4 @@
 import { sdk } from "@/graphql/api";
-import {
-  GetBreedPageQuery,
-  PageBreedInfoFragment,
-} from "@/graphql/generated/cms.generated";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cache } from "react";
@@ -14,6 +10,31 @@ interface BreedPageProps {
     breed: string;
   };
 }
+const BreedPage = async ({ params }: BreedPageProps) => {
+  const data = await getPageData(params.breed);
+  const page = data.pageBreedCollection?.items[0];
+
+  if (!page) {
+    notFound();
+  }
+
+  const { breed } = page;
+  return (
+    <>
+      {/* Need to render UI separately from the server components because styled-components can't render on the server  */}
+      {(() => {
+        switch (breed?.__typename) {
+          case "BreedDog": {
+            return <DogBreedPageUI data={breed} />;
+          }
+          default: {
+            return null;
+          }
+        }
+      })()}
+    </>
+  );
+};
 
 const getPageData = cache(async (breed: string) => {
   return await sdk().getBreedPage({ slug: breed });
@@ -31,31 +52,6 @@ export const generateMetadata = async ({
     description: seo?.description,
     robots: seo?.hideFromSearch ? "noindex, nofollow" : "index, follow",
   };
-};
-
-const BreedPage = async ({ params }: BreedPageProps) => {
-  const data = await getPageData(params.breed);
-  const page = data.pageBreedCollection?.items[0];
-
-  if (!page) {
-    notFound();
-  }
-
-  const { breed } = page;
-  return (
-    <>
-      {(() => {
-        switch (breed?.__typename) {
-          case "BreedDog": {
-            return <DogBreedPageUI data={breed} />;
-          }
-          default: {
-            return null;
-          }
-        }
-      })()}
-    </>
-  );
 };
 
 export default BreedPage;

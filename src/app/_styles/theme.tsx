@@ -1,5 +1,4 @@
 "use client";
-
 import { ThemeProvider } from "styled-components";
 
 const theme = {

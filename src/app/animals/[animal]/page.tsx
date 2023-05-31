@@ -9,25 +9,6 @@ interface AnimalPageParams {
     animal: string;
   };
 }
-
-const getPageData = cache(async (animal: string) => {
-  return await sdk().getAnimalPage({ slug: animal });
-});
-
-export const generateMetadata = async ({
-  params,
-}: AnimalPageParams): Promise<Metadata> => {
-  const data = await getPageData(params.animal);
-  const page = data.pageAnimalCollection?.items[0];
-  const { seo } = page ?? {};
-
-  return {
-    title: seo?.title,
-    description: seo?.description,
-    robots: seo?.hideFromSearch ? "noindex, nofollow" : "index, follow",
-  };
-};
-
 const AnimalPage = async ({ params }: AnimalPageParams) => {
   const data = await getPageData(params.animal);
   const page = data.pageAnimalCollection?.items[0];
@@ -84,6 +65,24 @@ const BreedList = async ({
       </ul>
     </div>
   );
+};
+
+const getPageData = cache(async (animal: string) => {
+  return await sdk().getAnimalPage({ slug: animal });
+});
+
+export const generateMetadata = async ({
+  params,
+}: AnimalPageParams): Promise<Metadata> => {
+  const data = await getPageData(params.animal);
+  const page = data.pageAnimalCollection?.items[0];
+  const { seo } = page ?? {};
+
+  return {
+    title: seo?.title,
+    description: seo?.description,
+    robots: seo?.hideFromSearch ? "noindex, nofollow" : "index, follow",
+  };
 };
 
 export default AnimalPage;
