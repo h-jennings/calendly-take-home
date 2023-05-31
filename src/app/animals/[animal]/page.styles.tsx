@@ -18,4 +18,8 @@ export const ImageContainer = styled.div`
 
 export const RichTextContainer = styled.div`
   padding-left: var(--space-4);
+
+  @media (max-width: 768px) {
+    padding-left: 0;
+  }
 `;

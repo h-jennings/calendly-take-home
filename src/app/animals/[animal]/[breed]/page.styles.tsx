@@ -10,6 +10,8 @@ export const ContentWrapper = styled(StackY)`
 
 export const ContentGrid = styled(Grid)`
   grid-template-columns: 1fr 2fr;
-  position: sticky;
-  top: calc(var(--nav-height) + var(--space-5));
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;

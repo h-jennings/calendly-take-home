@@ -1,3 +1,5 @@
+"use client";
+
 import { Space } from "@/app/_styles/theme";
 import styled from "styled-components";
 

@@ -5,6 +5,10 @@ import styled from "styled-components";
 
 export const Container = styled(StackY)`
   padding-left: var(--space-4);
+
+  @media (max-width: 768px) {
+    padding-left: 0;
+  }
 `;
 
 export const ListItem = styled.li`
