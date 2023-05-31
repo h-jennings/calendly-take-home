@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { FontSize, FontWeight, Leading } from "../_styles/theme";
 
 type TextProps = {
+  prose?: boolean;
   size?: FontSize;
   weight?: FontWeight;
   color?: "textPrimary" | "textSecondary" | "textAccent";
@@ -9,6 +10,17 @@ type TextProps = {
 };
 
 export const Text = styled.span<TextProps>`
+  ${({ prose }) => {
+    return (
+      prose &&
+      `
+      display: block;
+      max-width: var(--sizes-prose); 
+      line-height: var(--leading-2);
+    `
+    );
+  }};
+
   font-size: ${({ size }) => `var(--fontSizes-${size ?? "0"})`};
   font-weight: ${({ weight }) => `var(--fontWeights-${weight ?? "regular"})`};
   color: ${({ color }) => `var(--colors-${color ?? "textPrimary"})`};

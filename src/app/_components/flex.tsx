@@ -11,8 +11,8 @@ type FlexProps = {
 
 export const Flex = styled.div<FlexProps>`
   display: flex;
-  flex-direction: ${({ direction }) => direction || "row"};
-  justify-content: ${({ justify }) => justify || "flex-start"};
-  align-items: ${({ align }) => align || "stretch"};
+  flex-direction: ${({ direction }) => direction ?? "row"};
+  justify-content: ${({ justify }) => justify ?? "flex-start"};
+  align-items: ${({ align }) => align ?? "stretch"};
   gap: ${({ gap }) => gap != null && `var(--space-${gap})`};
 `;
