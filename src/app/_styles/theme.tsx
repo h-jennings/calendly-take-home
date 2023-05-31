@@ -29,13 +29,16 @@ const GlobalStyle = createGlobalStyle`
   --sizes-screenH: 100vh;
   --radii-pill: 9999px;
   --radii-circle: 50%;
-  --fontSizes-minus1: 14px;
+  --fontWeights-regular: 400;
+  --fontWeights-medium: 500;
+  --fontWeights-bold: 700;
+  --fontSizes-small: 14px;
   --fontSizes-0: 16px;
   --fontSizes-1: 18px;
-  --fontSizes-3: 24px;
-  --fontSizes-4: 32px;
-  --fontSizes-5: 48px;
-  --fontSizes-6: 64px;
+  --fontSizes-2: 24px;
+  --fontSizes-3: 32px;
+  --fontSizes-4: 48px;
+  --fontSizes-5: 64px;
   --leading-0: 1;
   --leading-1: 1.25;
   --leading-2: 1.5;
@@ -45,6 +48,11 @@ const GlobalStyle = createGlobalStyle`
   --transitions-default: 225ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 `;
+
+export type Space = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+export type FontSize = "small" | 0 | 1 | 2 | 3 | 4 | 5;
+export type Leading = 0 | 1 | 2 | 3;
+export type FontWeight = "regular" | "medium" | "bold";
 
 interface ThemeProps {
   children: React.ReactNode;
