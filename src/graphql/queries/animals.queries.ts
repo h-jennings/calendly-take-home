@@ -82,6 +82,10 @@ export const GET_BREED_PAGE = gql`
     bio {
       json
     }
+    image {
+      url
+      description
+    }
     lifespan
     friendliness
     shedRate

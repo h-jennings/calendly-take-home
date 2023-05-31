@@ -4,7 +4,7 @@ import { Flex } from "@/app/_components/flex";
 import { StackX } from "@/app/_components/stack";
 import { Text } from "@/app/_components/text";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import styled from "styled-components";
 
 interface RootAnimalsLayoutProps {

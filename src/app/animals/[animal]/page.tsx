@@ -1,4 +1,5 @@
 import { Headline } from "@/app/_components/headline";
+import { ImageContainerWide } from "@/app/_components/image-container";
 import { NextContentfulImage } from "@/app/_components/next-contentful-image";
 import { ContentfulRichText } from "@/app/_components/rich-text";
 import { StackY } from "@/app/_components/stack";
@@ -7,11 +8,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cache } from "react";
 import { BreedList } from "./_components/breed-list";
-import {
-  ContentWrapper,
-  ImageContainer,
-  RichTextContainer,
-} from "./page.styles";
+import { ContentWrapper, RichTextContainer } from "./page.styles";
 
 interface AnimalPageParams {
   params: {
@@ -35,7 +32,7 @@ const AnimalPage = async ({ params }: AnimalPageParams) => {
         <Headline align="center" as="h1" level={1}>
           {name}
         </Headline>
-        <ImageContainer>
+        <ImageContainerWide>
           {image?.url != null && (
             <NextContentfulImage
               src={image?.url}
@@ -47,7 +44,7 @@ const AnimalPage = async ({ params }: AnimalPageParams) => {
               }}
             />
           )}
-        </ImageContainer>
+        </ImageContainerWide>
         <RichTextContainer>
           <ContentfulRichText json={content?.json} />
         </RichTextContainer>
