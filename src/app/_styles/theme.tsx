@@ -47,8 +47,6 @@ const GlobalStyle = createGlobalStyle`
   --zIndices-nuclear: 9999;
   --transitions-default: 225ms cubic-bezier(0.4, 0, 0.2, 1);
   
-  background-color: var(--colors-surfacePrimary);
-
   }
 `;
 

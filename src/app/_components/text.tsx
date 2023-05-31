@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { FontSize, FontWeight, Leading } from "../_styles/theme";
 
 type TextProps = {
-  prose?: boolean;
+  prose?: "true" | "false";
   size?: FontSize;
   weight?: FontWeight;
   color?: "textPrimary" | "textSecondary" | "textAccent";
@@ -12,7 +12,7 @@ type TextProps = {
 export const Text = styled.span<TextProps>`
   ${({ prose }) => {
     return (
-      prose &&
+      prose === "true" &&
       `
       display: block;
       max-width: var(--sizes-prose); 

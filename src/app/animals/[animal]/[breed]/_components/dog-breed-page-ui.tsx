@@ -1,5 +1,4 @@
 "use client";
-import { Flex } from "@/app/_components/flex";
 import { Headline } from "@/app/_components/headline";
 import { StackX, StackY } from "@/app/_components/stack";
 import { Text } from "@/app/_components/text";
@@ -14,7 +13,7 @@ export const DogBreedPageUI = ({ data }: DogBreedPageUIProps) => {
       <Headline>{data.name}</Headline>
       <Headline level={2}>{data.name}</Headline>
       <Headline level={3}>{data.name}</Headline>
-      <Text prose>
+      <Text prose="true">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
       </Text>
       <StackY gap={5}>
