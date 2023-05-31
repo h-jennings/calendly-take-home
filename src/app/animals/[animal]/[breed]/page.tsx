@@ -62,28 +62,28 @@ const BreedDogPage = ({ data }: BreedDogPageProps) => {
   return (
     <ContentWrapper>
       <ContentGrid columnGap={4} rowGap={5}>
-        <StackY gap={3}>
-          {image?.url != null && (
-            <ImageContainerNarrow>
-              <NextContentfulImage
-                src={image.url}
-                alt={image?.description ?? ""}
-                fill
-                style={{
-                  objectFit: "cover",
-                  objectPosition: "center",
-                }}
-              />
-            </ImageContainerNarrow>
-          )}
-          <Headline as="h1" level={3}>
-            {name}
-          </Headline>
-        </StackY>
+        {image?.url != null && (
+          <ImageContainerNarrow>
+            <NextContentfulImage
+              src={image.url}
+              alt={image?.description ?? ""}
+              fill
+              style={{
+                objectFit: "cover",
+                objectPosition: "center",
+              }}
+            />
+          </ImageContainerNarrow>
+        )}
         <StackY gap={5}>
-          <div>
-            <ContentfulRichText json={bio?.json} />
-          </div>
+          <StackY gap={3}>
+            <Headline as="h1" level={3}>
+              {name}
+            </Headline>
+            <div>
+              <ContentfulRichText json={bio?.json} />
+            </div>
+          </StackY>
           <Table>
             <TableHead>
               <tr>
