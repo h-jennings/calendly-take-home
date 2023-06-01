@@ -2,6 +2,7 @@ import { Headline } from "@/app/_components/headline";
 import { ImageContainerNarrow } from "@/app/_components/image-container";
 import { NextContentfulImage } from "@/app/_components/next-contentful-image";
 import { ContentfulRichText } from "@/app/_components/rich-text";
+import ScrollUp from "@/app/_components/scroll-up";
 import { StackY } from "@/app/_components/stack";
 import {
   Table,
@@ -60,49 +61,52 @@ const BreedDogPage = ({ data }: BreedDogPageProps) => {
   } years`;
 
   return (
-    <ContentWrapper>
-      <ContentGrid columnGap={4} rowGap={5}>
-        {image?.url != null && (
-          <ImageContainerNarrow>
-            <NextContentfulImage
-              src={image.url}
-              alt={image?.description ?? ""}
-              fill
-              style={{
-                objectFit: "cover",
-                objectPosition: "center",
-              }}
-            />
-          </ImageContainerNarrow>
-        )}
-        <StackY gap={5}>
-          <StackY gap={3}>
-            <Headline as="h1" level={3}>
-              {name}
-            </Headline>
-            <div>
-              <ContentfulRichText json={bio?.json} />
-            </div>
+    <>
+      <ScrollUp />
+      <ContentWrapper>
+        <ContentGrid columnGap={4} rowGap={5}>
+          {image?.url != null && (
+            <ImageContainerNarrow>
+              <NextContentfulImage
+                src={image.url}
+                alt={image?.description ?? ""}
+                fill
+                style={{
+                  objectFit: "cover",
+                  objectPosition: "center",
+                }}
+              />
+            </ImageContainerNarrow>
+          )}
+          <StackY gap={5}>
+            <StackY gap={3}>
+              <Headline as="h1" level={3}>
+                {name}
+              </Headline>
+              <div>
+                <ContentfulRichText json={bio?.json} />
+              </div>
+            </StackY>
+            <Table>
+              <TableHead>
+                <tr>
+                  <TableHeaderCell>Life span</TableHeaderCell>
+                  <TableHeaderCell>Friendliness (1-5)</TableHeaderCell>
+                  <TableHeaderCell>Shed rate (1-5)</TableHeaderCell>
+                </tr>
+              </TableHead>
+              <TableBody>
+                <tr>
+                  <TableCell>{lifespanString}</TableCell>
+                  <TableCell>{friendliness}</TableCell>
+                  <TableCell>{shedRate}</TableCell>
+                </tr>
+              </TableBody>
+            </Table>
           </StackY>
-          <Table>
-            <TableHead>
-              <tr>
-                <TableHeaderCell>Life span</TableHeaderCell>
-                <TableHeaderCell>Friendliness (1-5)</TableHeaderCell>
-                <TableHeaderCell>Shed rate (1-5)</TableHeaderCell>
-              </tr>
-            </TableHead>
-            <TableBody>
-              <tr>
-                <TableCell>{lifespanString}</TableCell>
-                <TableCell>{friendliness}</TableCell>
-                <TableCell>{shedRate}</TableCell>
-              </tr>
-            </TableBody>
-          </Table>
-        </StackY>
-      </ContentGrid>
-    </ContentWrapper>
+        </ContentGrid>
+      </ContentWrapper>
+    </>
   );
 };
 
