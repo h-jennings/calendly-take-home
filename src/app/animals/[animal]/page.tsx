@@ -57,9 +57,11 @@ const AnimalPage = async ({ params }: AnimalPageParams) => {
     </ContentWrapper>
   );
 };
-const getPageData = cache(async (animal: string) => {
-  return await sdk().getAnimalPage({ slug: animal });
-});
+const getPageData = async (animal: string) => {
+  return await sdk({ next: { tags: ["getAnimalPage", animal] } }).getAnimalPage(
+    { slug: animal },
+  );
+};
 
 export const generateMetadata = async ({
   params,

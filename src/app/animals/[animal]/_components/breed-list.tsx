@@ -35,6 +35,8 @@ export const BreedList = async ({
   );
 };
 
-const getBreedCollection = cache(async (id: string) => {
-  return await sdk().getBreedCollection({ id });
-});
+const getBreedCollection = async (id: string) => {
+  return await sdk({
+    next: { tags: ["getBreedCollection", id] },
+  }).getBreedCollection({ id });
+};

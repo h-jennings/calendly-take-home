@@ -110,9 +110,11 @@ const BreedDogPage = ({ data }: BreedDogPageProps) => {
   );
 };
 
-const getPageData = cache(async (breed: string) => {
-  return await sdk().getBreedPage({ slug: breed });
-});
+const getPageData = async (breed: string) => {
+  return await sdk({ next: { tags: ["getBreedPage", breed] } }).getBreedPage({
+    slug: breed,
+  });
+};
 
 export const generateMetadata = async ({
   params,

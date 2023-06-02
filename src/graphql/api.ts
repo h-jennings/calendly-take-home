@@ -14,14 +14,14 @@ const getAuthHeader = () => {
   }`;
 };
 
-const client = () => {
+const client = ({ next }: { next?: NextFetchRequestConfig }) => {
   return new GraphQLClient(CMS_URL, {
     headers: {
       Authorization: getAuthHeader(),
     },
+    next,
   });
 };
 
-export const sdk = () => {
-  return getSdk(client());
-};
+export const sdk = ({ next }: { next?: NextFetchRequestConfig } = {}) =>
+  getSdk(client({ next }));
